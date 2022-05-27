@@ -1,17 +1,31 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
+  <img :src="imgLink" alt="" srcset="" />
+  <hr />
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script setup>
+import { ref, onMounted, computed } from "vue";
+import axios from "axios";
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+const imgLink = ref("");
+onMounted(() => {
+  axios.get("https://api.waifu.pics/sfw/waifu").then((response) => {
+    // console.log(response.data.url);
+    imgLink.value = response.data.url;
+    console.log(imgLink);
+  });
+
+  const showImgLink = computed(() => {
+    return imgLink;
+  });
+
+  return {
+    showImgLink,
+    imgLink,
+  };
+});
 </script>
 
 <style>

@@ -1,13 +1,17 @@
 <template>
   <div class="flex">
     <div class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto border-r">
-      <h2 class="text-3xl font-semibold text-center text-blue-800">
+      <h2
+        @click="changeApi"
+        class="text-3xl font-semibold text-center text-blue-800"
+      >
         Pick your poison
       </h2>
 
       <div>
         <side-bar @set-category="setCategory"></side-bar>
       </div>
+      <page-size @newPageSize="newPageSize"></page-size>
     </div>
     <div class="w-full h-full p-4 m-8 overflow-y-auto">
       <div class="flex items-center justify-center p-4 border-4 border-dotted">
@@ -53,9 +57,10 @@ import axios from "axios";
 import imgBig from "./components/imgBig.vue";
 import sideBar from "./components/theSidebar.vue";
 import loadingSpinner from "./components/loadingSpinner.vue";
+import pageSize from "./components/pageSize.vue";
 
 export default {
-  components: { imgBig, sideBar, loadingSpinner },
+  components: { imgBig, sideBar, loadingSpinner, pageSize },
   setup() {
     const imgLinks = ref([]);
     const hardLink = ref("https://i.waifu.pics/aY~~qQE.png");
@@ -66,6 +71,7 @@ export default {
     const selectedType = ref("sfw");
     const loadingStatus = ref(false);
     const numberOfPictures = ref(18);
+    const apiChoice = ref(1);
 
     onMounted(() => {
       imgLinks.value = [
@@ -96,22 +102,40 @@ export default {
       let imgLinksTemp = [];
       imgLinks.value = [];
       for (let i = 0; i < numberOfPictures.value; i++) {
-        axios
-          .get(`https://api.waifu.pics/${selectedType.value}/${category}`)
-          .then((response) => {
-            imgLinksTemp.push(response.data.url);
-            imgLinks.value.push(response.data.url);
-            console.log("2");
-            if (i === numberOfPictures.value - 1) {
-              imgLinks.value = imgLinksTemp;
-              console.log(imgLinks.value);
-              // imgLinksTemp = [];
-              loadingStatus.value = false;
-            }
-          });
+        if (apiChoice.value == 1) {
+          axios
+            .get(`https://api.waifu.pics/${selectedType.value}/${category}`)
+            .then((response) => {
+              imgLinksTemp.push(response.data.url);
+              imgLinks.value.push(response.data.url);
+              console.log("2");
+              if (i === numberOfPictures.value - 1) {
+                imgLinks.value = imgLinksTemp;
+                console.log(imgLinks.value);
+                // imgLinksTemp = [];
+                // loadingStatus.value = false;
+              }
+            });
+        } else {
+          axios
+            .get(`https://api.waifu.im/random`, { selected_tags: category })
+            .then((response) => {
+              console.log(response.data.images[0].url);
+
+              imgLinks.value.push(response.data.images[0].url);
+            });
+        }
       }
     };
 
+    const changeApi = () => {
+      apiChoice.value = 2;
+      console.log("change in api");
+    };
+
+    const newPageSize = (newSize) => {
+      numberOfPictures.value = newSize;
+    };
     let loadingCounter = 0;
     const loadingHandler = () => {
       loadingCounter++;
@@ -145,6 +169,8 @@ export default {
       setCategory,
       loadImgs,
       loadingHandler,
+      newPageSize,
+      changeApi,
       loadingStatus,
       hardLink,
       softLink,
@@ -152,6 +178,7 @@ export default {
       imgClicked,
       blurStatus,
       selectedType,
+      apiChoice,
     };
   },
 };

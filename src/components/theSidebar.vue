@@ -1,78 +1,44 @@
 <template>
   <aside class="w-50" aria-label="Sidebar">
-    <div
-      class="overflow-y-auto mt-5 py-4 px-3 bg-gray-50 rounded dark:bg-gray-800"
-    >
+    <div class="overflow-y-auto mt-5 py-4 px-3">
       <ul class="space-y-2">
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('waifu')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('waifu')">
             <span class="ml-3">Waifu</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('neko')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('neko')">
             <span class="flex-1 ml-3 whitespace-nowrap">Neko</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('shinobu')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('shinobu')">
             <span class="flex-1 ml-3 whitespace-nowrap">Shinobu</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('megumin')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('megumin')">
             <span class="flex-1 ml-3 whitespace-nowrap">Megumin</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('bully')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('bully')">
             <span class="flex-1 ml-3 whitespace-nowrap">Bully</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('cuddle')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('cuddle')">
             <span class="flex-1 ml-3 whitespace-nowrap">Cuddle</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('cry')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('cry')">
             <span class="flex-1 ml-3 whitespace-nowrap">Cry</span>
           </a>
         </li>
         <li>
-          <a
-            href="#"
-            class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
-            @click="setCategory('kiss')"
-          >
+          <a href="#" :class="classStylesLink" @click="setCategory('kiss')">
             <span class="flex-1 ml-3 whitespace-nowrap">Kiss</span>
           </a>
         </li>
@@ -83,6 +49,12 @@
 
 <script>
 export default {
+  data() {
+    return {
+      classStylesLink:
+        "flex items-center p-2 text-base font-normal bg-gray-300 text-gray-600 hover:text-gray-700 hover:bg-gray-400 rounded-lg",
+    };
+  },
   emits: ["set-category"],
   methods: {
     setCategory(category) {

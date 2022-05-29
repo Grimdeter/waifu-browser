@@ -18,17 +18,21 @@ export const getAllTags = async () => {
 
 export const getRandomWaifus = async (tag, isNsfw = false) => {
   try {
-    await waifuImAxios.get(LIST, {
+    const response = await waifuImAxios.get(LIST, {
       params: {
         gif: false,
         is_nsfw: isNsfw,
-        more: true,
+        many: true,
         selected_tags: tag,
       },
     });
+
+    return response.images;
   } catch (err) {
     createToast(err.message, {
       type: "danger",
     });
   }
+
+  return [];
 };

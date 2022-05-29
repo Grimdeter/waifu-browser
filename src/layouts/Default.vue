@@ -1,12 +1,16 @@
 <template>
   <div class="relative flex flex-col">
     <header class="py-4 px-4 bg-cyan-500 text-white">
-      <button class="btn" @click="showSidebar = true">show sidebar</button>
+      <button class="btn mr-4" @click="showSidebar = true">show sidebar</button>
+
+      <Checkbox v-model:isChecked="isNsfw" label="NSFW"></Checkbox>
     </header>
 
-    <main>
-      <router-view></router-view>
+    <main class="py-10">
+      <router-view :waifuList="waifuList"></router-view>
     </main>
+
+    <footer></footer>
 
     <Sidebar
       v-model="showSidebar"
@@ -19,13 +23,16 @@
 
 <script>
 import Sidebar from "@/components/Sidebar.vue";
+import Checkbox from "@/components/Checkbox.vue";
 import { ref, onMounted, watch } from "vue";
 import * as waifuImService from "@/services/waifu-im.service";
 
 export default {
-  components: { Sidebar },
+  components: { Sidebar, Checkbox },
 
   setup() {
+    let isFirst = true;
+
     /* ==================== refs START ==================== */
     const showSidebar = ref(false);
     const tagList = ref([]);
@@ -57,14 +64,25 @@ export default {
     watch(tagList, () => {
       currentTag.value = tagList.value[0];
       getRandomWaifus();
+      setTimeout(() => {
+        isFirst = false;
+      }, 300);
     });
 
     watch(currentTag, () => {
-      getRandomWaifus();
+      if (!isFirst) {
+        getRandomWaifus();
+      }
+    });
+
+    watch(isNsfw, () => {
+      if (!isFirst) {
+        getRandomWaifus();
+      }
     });
     /* ==================== watchers END ==================== */
 
-    return { currentTag, showSidebar, tagList };
+    return { currentTag, showSidebar, tagList, waifuList, isNsfw };
   },
 };
 </script>

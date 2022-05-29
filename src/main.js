@@ -6,12 +6,12 @@ import "./assets/tailwind.css";
 import baseLink from "./components/baseLink.vue";
 import imgThumb from "./components/imgThumb.vue";
 import { routes } from "./routes";
-import 'mosha-vue-toastify/dist/style.css';
+import "mosha-vue-toastify/dist/style.css";
 
 const app = createApp(App);
 
 const router = VueRouter.createRouter({
-  history: VueRouter.createWebHashHistory(),
+  history: VueRouter.createWebHistory(),
   routes,
 });
 

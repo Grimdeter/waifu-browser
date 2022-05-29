@@ -1,20 +1,12 @@
 <template>
-  <aside class="w-50" aria-label="Sidebar">
-    <div class="overflow-y-auto mt-5 py-4 px-3">
-      <ul class="space-y-2">
-        <li v-for="apiLink in apiLinks" :key="apiLink">
-          <a href="#" :class="classStylesLink" @click="setCategory('apiLink')">
-            <span class="ml-3">{{ apiLink }}</span>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </aside>
+  <a href="#" :class="classStylesLink" @click="setCategory(linkText)">
+    <span class="ml-3">{{ linkText }}</span>
+  </a>
 </template>
 
 <script>
 export default {
-  props: ["apiLinks"],
+  props: ["linkText"],
   data() {
     return {
       classStylesLink:

@@ -9,7 +9,10 @@
       </h2>
 
       <div>
-        <side-bar @set-category="setCategory"></side-bar>
+        <side-bar
+          @set-category="setCategory"
+          :apiLinks="currentApiLinks"
+        ></side-bar>
       </div>
       <page-size @newPageSize="newPageSize"></page-size>
     </div>
@@ -33,22 +36,6 @@
       </div>
     </div>
   </div>
-  <!-- <div class="columns-2">
-    <side-bar></side-bar>
-    <div class="flex-wrap" :class="blurStatus">
-      <img-thumb
-        @click="thumbClicked(i)"
-        v-for="(imgLink, i) in imgLinks"
-        :key="i"
-        :imgLink="imgLink"
-      />
-    </div>
-    <imgBig
-      v-if="imgClicked"
-      @close-img="thumbClose"
-      :imgLink="imgLinks[imgClicked]"
-    />
-  </div> -->
 </template>
 
 <script>
@@ -72,6 +59,28 @@ export default {
     const loadingStatus = ref(false);
     const numberOfPictures = ref(18);
     const apiChoice = ref(1);
+    const api1Links = [
+      "waifu",
+      "neko",
+      "shinobu",
+      "megumin",
+      "bully",
+      "cuddle",
+      "bonk",
+      "yeet",
+      "highfive",
+    ];
+    const api2Links = [
+      "waifu",
+      "uniform",
+      "maid",
+      "marin-kitagawa",
+      "mori-calliope",
+      "raiden-shogun",
+      "selfies",
+      "oppai",
+    ];
+    const currentApiLinks = ref(api1Links);
 
     onMounted(() => {
       imgLinks.value = [
@@ -129,7 +138,14 @@ export default {
     };
 
     const changeApi = () => {
-      apiChoice.value = 2;
+      if (apiChoice.value !== 1) {
+        apiChoice.value = 2;
+        currentApiLinks.value = api2Links;
+      } else {
+        apiChoice.value = 1;
+        currentApiLinks.value = api1Links;
+      }
+
       console.log("change in api");
     };
 
@@ -179,6 +195,7 @@ export default {
       blurStatus,
       selectedType,
       apiChoice,
+      currentApiLinks,
     };
   },
 };

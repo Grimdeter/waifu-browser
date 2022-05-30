@@ -18,7 +18,10 @@
     "sass-loader": "^13.0.0",
     "tailwindcss": "^3",
     "vue": "^3.2.13",
-    "vue-router": "^4.0.15"
+    "vue-easy-lightbox": "^1.4.1",
+    "vue-router": "^4.0.15",
+    "vue3-click-away": "^1.2.4",
+    "vue3-keypress": "^4.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

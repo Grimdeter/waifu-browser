@@ -34,12 +34,15 @@ const innerTag = computed({
     emits("update:tag", value);
   },
 });
+const closeSidebar = () => {
+  emits("update:modelValue", false);
+};
 </script>
 
 <template>
   <transition name="slide">
     <nav v-if="innerModel" class="w-64 py-5 h-screen bg-gray-800">
-      <div class="relative w-full h-full">
+      <div class="relative w-full h-full" v-click-away="closeSidebar">
         <button
           class="btn absolute -right-5 -top-2 text-4xl border-2 border-white rounded-full bg-white"
           @click="innerModel = false"

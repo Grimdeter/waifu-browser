@@ -1,16 +1,17 @@
 <template>
   <div class="relative flex flex-col">
-    <header class="py-4 px-4 bg-cyan-500 text-white">
-      <button class="btn mr-4" @click="showSidebar = true">show sidebar</button>
-
+    <!-- <header class="py-4 px-4 bg-cyan-500 text-white">
       <Checkbox v-model:isChecked="isNsfw" label="NSFW"></Checkbox>
-    </header>
+    </header> -->
+    <TheHeader>
+      <button class="btn mr-4" @click="showSidebar = true">Show sidebar</button>
+    </TheHeader>
 
     <main class="py-10">
       <router-view :waifuList="waifuList"></router-view>
     </main>
 
-    <footer></footer>
+    <TheFooter></TheFooter>
 
     <Sidebar
       v-model="showSidebar"
@@ -24,11 +25,13 @@
 <script>
 import Sidebar from "@/components/Sidebar.vue";
 import Checkbox from "@/components/Checkbox.vue";
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
 import { ref, onMounted, watch } from "vue";
 import * as waifuImService from "@/services/waifu-im.service";
-
+import { useKeypress } from "vue3-keypress";
 export default {
-  components: { Sidebar, Checkbox },
+  components: { Sidebar, Checkbox, TheHeader, TheFooter },
 
   setup() {
     let isFirst = true;
@@ -39,6 +42,7 @@ export default {
     const waifuList = ref([]);
     const currentTag = ref({});
     const isNsfw = ref(false);
+
     /* ==================== refs END ==================== */
 
     /* ==================== methods START ==================== */
@@ -52,11 +56,25 @@ export default {
         isNsfw.value
       );
     };
+
+    const hideSideBar = () => {
+      showSidebar.value = false;
+    };
     /* ==================== methods END ==================== */
 
     /* ==================== hooks START ==================== */
     onMounted(() => {
       getAllTags();
+    });
+
+    useKeypress({
+      keyEvent: "keydown",
+      keyBinds: [
+        {
+          keyCode: "esc", // or keyCode as integer, e.g. 40
+          success: hideSideBar,
+        },
+      ],
     });
     /* ==================== hooks END ==================== */
 
@@ -82,7 +100,13 @@ export default {
     });
     /* ==================== watchers END ==================== */
 
-    return { currentTag, showSidebar, tagList, waifuList, isNsfw };
+    return {
+      currentTag,
+      showSidebar,
+      tagList,
+      waifuList,
+      isNsfw,
+    };
   },
 };
 </script>

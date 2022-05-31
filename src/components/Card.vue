@@ -33,11 +33,16 @@ const getDescription = computed(() => {
         menuIsVisible = false;
       "
     >
-      <img :src="image.url" alt="image" class="shadow hover:shadow-xl w-full" />
+      <img
+        :src="image.url"
+        alt="image"
+        class="drop-shadow-xl hover:drop-shadow-2xl rounded-lg w-full"
+      />
       <button
         v-if="menuIconVisible"
-        class="btn absolute left-5 top-5 text-4xl"
+        class="btn absolute left-5 top-5 text-xl"
         @mouseenter="menuIsVisible = true"
+        @click.stop="menuIsVisible = true"
       >
         <dots-vertical></dots-vertical>
       </button>

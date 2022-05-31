@@ -7,7 +7,6 @@
         </li>
       </ul>
     </div>
-    <!-- all props & events -->
     <vue-easy-lightbox
       moveDisabled
       :visible="visible"

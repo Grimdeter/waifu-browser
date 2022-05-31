@@ -4,15 +4,14 @@
       <div class="container mx-auto px-6 py-3">
         <div class="md:flex md:items-center md:justify-between">
           <div class="flex justify-between items-center">
-            <div class="text-xl font-semibold text-gray-700">
-              <slot></slot>
-            </div>
+            <div class="text-xl font-semibold text-gray-700">Waifu Browser</div>
             <!-- Mobile menu button -->
             <div class="flex md:hidden">
               <button
                 type="button"
                 class="text-gray-500 hover:text-gray-600 focus:outline-none focus:text-gray-600"
                 aria-label="toggle menu"
+                @click="$emit('showSidebar')"
               >
                 <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
                   <path
@@ -36,6 +35,7 @@
               class="block mx-4 mt-2 md:mt-0 text-sm text-gray-700 capitalize hover:text-blue-600"
               >Project GitHub</a
             >
+            <slot></slot>
           </div>
         </div>
       </div>
@@ -53,7 +53,12 @@
       >
         <div class="text-center">
           <h1 class="text-white text-2xl font-semibold uppercase md:text-3xl">
-            Pick your <span class="underline text-blue-400">poison</span>
+            Pick your
+            <span
+              class="underline text-blue-400 cursor-pointer"
+              @click="$emit('showSidebar')"
+              >poison</span
+            >
           </h1>
         </div>
       </div>

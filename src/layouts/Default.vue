@@ -3,7 +3,7 @@
     <!-- <header class="py-4 px-4 bg-cyan-500 text-white">
       <Checkbox v-model:isChecked="isNsfw" label="NSFW"></Checkbox>
     </header> -->
-    <TheHeader>
+    <TheHeader class="" @showSidebar="showSidebar = true">
       <button class="btn mr-4" @click="showSidebar = true">Show sidebar</button>
     </TheHeader>
 
@@ -11,13 +11,13 @@
       <router-view :waifuList="waifuList"></router-view>
     </main>
 
-    <TheFooter></TheFooter>
+    <TheFooter v-if="showFooter"></TheFooter>
 
     <Sidebar
       v-model="showSidebar"
       v-model:tag="currentTag"
       :tagList="tagList"
-      class="absolute left-0 top-0"
+      class="absolute right-0 top-0"
     ></Sidebar>
   </div>
 </template>
@@ -42,6 +42,7 @@ export default {
     const waifuList = ref([]);
     const currentTag = ref({});
     const isNsfw = ref(false);
+    const showFooter = ref(false);
 
     /* ==================== refs END ==================== */
 
@@ -55,11 +56,13 @@ export default {
         currentTag.value.name,
         isNsfw.value
       );
+      showFooter.value = true;
     };
 
     const hideSideBar = () => {
       showSidebar.value = false;
     };
+
     /* ==================== methods END ==================== */
 
     /* ==================== hooks START ==================== */
@@ -106,6 +109,7 @@ export default {
       tagList,
       waifuList,
       isNsfw,
+      showFooter,
     };
   },
 };

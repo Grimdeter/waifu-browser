@@ -18,10 +18,15 @@
               <a
                 class="hover:opacity-75 mt-3"
                 href="https://github.com/Grimdeter"
+                target="_blank"
               >
                 Author GitHub page
               </a>
-              <a class="hover:opacity-75" href="https://t.me/grimdeter">
+              <a
+                class="hover:opacity-75"
+                href="https://t.me/grimdeter"
+                target="_blank"
+              >
                 Telegram contact
               </a>
             </nav>

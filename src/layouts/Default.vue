@@ -17,7 +17,7 @@
       v-model="showSidebar"
       v-model:tag="currentTag"
       :tagList="tagList"
-      class="absolute right-0 top-0"
+      class="right-0 top-0 fixed"
     ></Sidebar>
   </div>
 </template>

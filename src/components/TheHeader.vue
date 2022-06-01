@@ -54,7 +54,7 @@
                 ></path>
               </svg>
             </button>
-            <!-- <router-link to="/manage_waifus" class="mr-5"
+            <!-- <router-link to="ManageWaifus" class="mr-5"
               >Manage my waifus</router-link
             > -->
           </div>

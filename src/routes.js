@@ -17,16 +17,20 @@ export const routes = [
         component: () => import("./pages/DetailWaifu.vue"),
         props: true,
       },
-    ],
-  },
-  {
-    path: "/manage_waifus",
-    component: () => import("./layouts/HeaderOnly.vue"),
-    children: [
       {
-        path: "",
+        name: "ManageWaifus",
+        path: "/ManageWaifus",
         component: () => import("./pages/ManageWaifus.vue"),
         props: true,
+        children: [
+          {
+            name: "AddWaifu",
+            path: "/AddWaifu",
+            component: () => {
+              import("./pages/AddWaifu.vue");
+            },
+          },
+        ],
       },
     ],
   },

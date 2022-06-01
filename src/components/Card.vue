@@ -2,6 +2,9 @@
 import { defineComponent, ref, computed, defineProps } from "vue";
 import ImgMenuVue from "./ImgMenu.vue";
 
+const imgs = ref([]);
+const visible = ref(false);
+
 const ImgMenu = defineComponent(ImgMenuVue);
 
 const menuIconVisible = ref(false);
@@ -18,9 +21,18 @@ const getDescription = computed(() => {
   return props.image.tags.map((el) => el.description).join(" ");
 });
 
-// const menuShow = () => {
-//   menuIsVisible.value = true;
-// };
+const showMultiple = () => {
+  let newArr = [];
+  newArr.push({ title: props.image.image_id, src: props.image.url });
+  imgs.value = newArr;
+  show();
+};
+const show = () => {
+  visible.value = true;
+};
+const handleHide = () => {
+  visible.value = false;
+};
 </script>
 
 <template>
@@ -37,6 +49,7 @@ const getDescription = computed(() => {
         :src="image.url"
         alt="image"
         class="drop-shadow-xl hover:drop-shadow-2xl rounded-lg w-full"
+        @click="showMultiple()"
       />
       <button
         v-if="menuIconVisible"
@@ -64,5 +77,11 @@ const getDescription = computed(() => {
         </p>
       </div>
     </div>
+    <vue-easy-lightbox
+      moveDisabled
+      :visible="visible"
+      :imgs="imgs"
+      @hide="handleHide"
+    ></vue-easy-lightbox>
   </div>
 </template>

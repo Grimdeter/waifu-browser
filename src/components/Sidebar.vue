@@ -49,7 +49,7 @@ const closeSidebar = () => {
         >
           <CloseIcon></CloseIcon>
         </button>
-        <div class="flex items-center justify-center">
+        <div class="flex items-center justify-center mt-20">
           <h3 class="text-white">Tags</h3>
         </div>
         <div class="mt-10">
@@ -72,6 +72,7 @@ const closeSidebar = () => {
           <a
             href="https://waifu.im/docs/"
             class="block w-full py-2 text-sm text-gray-100 hover:bg-blue-500 hover:text-white text-center"
+            target="_blank"
             >API documentation</a
           >
         </div>
@@ -79,6 +80,7 @@ const closeSidebar = () => {
           <a
             href="https://github.com/Grimdeter/waifu-browser"
             class="block w-full py-2 text-sm text-gray-100 hover:bg-blue-500 hover:text-white text-center"
+            target="_blank"
             >Project GitHub</a
           >
         </div>

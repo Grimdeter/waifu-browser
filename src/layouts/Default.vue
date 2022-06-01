@@ -3,9 +3,10 @@
     <!-- <header class="py-4 px-4 bg-cyan-500 text-white">
       <Checkbox v-model:isChecked="isNsfw" label="NSFW"></Checkbox>
     </header> -->
-    <TheHeader class="" @showSidebar="showSidebar = true">
+    <TheHeader class="fixed w-full z-40" @showSidebar="showSidebar = true">
       <button class="btn mr-4" @click="showSidebar = true">Show sidebar</button>
     </TheHeader>
+    <BackgroundImage @showSidebar="showSidebar = true"></BackgroundImage>
 
     <main class="py-10">
       <router-view :waifuList="waifuList"></router-view>
@@ -30,8 +31,9 @@ import TheFooter from "@/components/TheFooter.vue";
 import { ref, onMounted, watch } from "vue";
 import * as waifuImService from "@/services/waifu-im.service";
 import { useKeypress } from "vue3-keypress";
+import BackgroundImage from "@/components/BackgroundImage.vue";
 export default {
-  components: { Sidebar, Checkbox, TheHeader, TheFooter },
+  components: { Sidebar, Checkbox, TheHeader, TheFooter, BackgroundImage },
 
   setup() {
     let isFirst = true;

@@ -19,4 +19,15 @@ export const routes = [
       },
     ],
   },
+  {
+    path: "/manage_waifus",
+    component: () => import("./layouts/HeaderOnly.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("./pages/ManageWaifus.vue"),
+        props: true,
+      },
+    ],
+  },
 ];

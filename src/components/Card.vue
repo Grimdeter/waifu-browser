@@ -38,7 +38,7 @@ const handleHide = () => {
 <template>
   <div class="w-full px-4">
     <div
-      class="bg-white relative rounded-lg overflow-hidden mb-10"
+      class="bg-white relative rounded-lg overflow-hidden mb-10 shadow-xl hover:shadow-2xl"
       @mouseenter="menuIconVisible = true"
       @mouseleave="
         menuIconVisible = false;
@@ -48,7 +48,7 @@ const handleHide = () => {
       <img
         :src="image.url"
         alt="image"
-        class="drop-shadow-xl hover:drop-shadow-2xl rounded-lg w-full"
+        class="rounded-lg w-full"
         @click="showMultiple()"
       />
       <button

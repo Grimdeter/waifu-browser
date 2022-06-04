@@ -9,7 +9,10 @@
     <BackgroundImage @showSidebar="showSidebar = true"></BackgroundImage>
 
     <main class="py-10">
-      <router-view :waifuList="waifuList"></router-view>
+      <router-view
+        :waifuList="waifuList"
+        @post-new-waifu="postWaifu"
+      ></router-view>
     </main>
 
     <TheFooter v-if="showFooter"></TheFooter>
@@ -32,6 +35,8 @@ import { ref, onMounted, watch } from "vue";
 import * as waifuImService from "@/services/waifu-im.service";
 import { useKeypress } from "vue3-keypress";
 import BackgroundImage from "@/components/BackgroundImage.vue";
+import { getMyWaifus, postMyWaifus } from "@/services/firbase.service";
+
 export default {
   components: { Sidebar, Checkbox, TheHeader, TheFooter, BackgroundImage },
 
@@ -65,11 +70,23 @@ export default {
       showSidebar.value = false;
     };
 
+    const getW = async () => {
+      await getMyWaifus();
+    };
+
+    const postWaifu = async (waifu) => {
+      console.log(waifu);
+      await postMyWaifus(waifu).then(() => {
+        getW();
+      });
+    };
+
     /* ==================== methods END ==================== */
 
     /* ==================== hooks START ==================== */
     onMounted(() => {
       getAllTags();
+      getW();
     });
 
     useKeypress({
@@ -112,6 +129,7 @@ export default {
       waifuList,
       isNsfw,
       showFooter,
+      postWaifu,
     };
   },
 };

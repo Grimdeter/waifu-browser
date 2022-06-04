@@ -19,18 +19,14 @@ export const routes = [
       },
       {
         name: "ManageWaifus",
-        path: "/ManageWaifus",
+        path: "ManageWaifus",
         component: () => import("./pages/ManageWaifus.vue"),
         props: true,
-        children: [
-          {
-            name: "AddWaifu",
-            path: "/AddWaifu",
-            component: () => {
-              import("./pages/AddWaifu.vue");
-            },
-          },
-        ],
+      },
+      {
+        name: "AddWaifu",
+        path: "AddWaifu",
+        component: () => import("./pages/AddWaifu.vue"),
       },
     ],
   },

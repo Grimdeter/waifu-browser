@@ -1,8 +1,8 @@
 <template>
   <div class="container mx-auto">
     <router-link
-      to="ManageWaifus/AddWaifu"
-      class="block mx-auto mt-2 md:mt-0 text-sm text-gray-700 capitalize hover:text-blue-600"
+      to="AddWaifu"
+      class="block mx-auto text-gray-700 capitalize hover:text-blue-600"
       >Add waifu</router-link
     >
     <router-link

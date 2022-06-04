@@ -48,7 +48,7 @@ const handleHide = () => {
       <img
         :src="image.url"
         alt="image"
-        class="rounded-lg w-full"
+        class="rounded-lg w-full hover:opacity-70"
         @click="showMultiple()"
       />
       <button

@@ -1,38 +1,50 @@
 <script setup>
-import { defineComponent, ref, computed, defineProps } from "vue";
-import ImgMenuVue from "./ImgMenu.vue";
+import { defineComponent, ref, computed, defineProps } from "vue"
+import ImgMenuVue from "./ImgMenu.vue"
 
-const imgs = ref([]);
-const visible = ref(false);
+const imgs = ref([])
+const visible = ref(false)
 
-const ImgMenu = defineComponent(ImgMenuVue);
+const ImgMenu = defineComponent(ImgMenuVue)
 
-const menuIconVisible = ref(false);
-const menuIsVisible = ref(false);
+const menuIconVisible = ref(false)
+const menuIsVisible = ref(false)
 
 const props = defineProps({
   image: {
     type: Object,
     default: () => ({}),
   },
-});
+})
 
 const getDescription = computed(() => {
-  return props.image.tags.map((el) => el.description).join(" ");
-});
+  if (props.image.tags) {
+    return props.image.tags.map((el) => el.description).join(" ")
+  } else {
+    return props.image.description
+  }
+})
 
 const showMultiple = () => {
-  let newArr = [];
-  newArr.push({ title: props.image.image_id, src: props.image.url });
-  imgs.value = newArr;
-  show();
-};
+  let newArr = []
+  newArr.push({
+    title: props.image.image_id,
+    src: props.image.url || props.image.src,
+  })
+  imgs.value = newArr
+  show()
+}
 const show = () => {
-  visible.value = true;
-};
+  visible.value = true
+}
 const handleHide = () => {
-  visible.value = false;
-};
+  visible.value = false
+}
+
+const toggleOnMousleLeave = () => {
+  menuIconVisible.value = false
+  menuIsVisible.value = false
+}
 </script>
 
 <template>
@@ -40,13 +52,10 @@ const handleHide = () => {
     <div
       class="bg-white relative rounded-lg overflow-hidden mb-10 shadow-xl hover:shadow-2xl"
       @mouseenter="menuIconVisible = true"
-      @mouseleave="
-        menuIconVisible = false;
-        menuIsVisible = false;
-      "
+      @mouseleave="toggleOnMousleLeave"
     >
       <img
-        :src="image.url"
+        :src="image.url || image.src"
         alt="image"
         class="rounded-lg w-full hover:opacity-70"
         @click="showMultiple()"
@@ -69,7 +78,7 @@ const handleHide = () => {
           <p
             class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary"
           >
-            {{ image.image_id }}
+            {{ image.image_id || image.WID }}
           </p>
         </h3>
         <p class="text-base text-body-color leading-relaxed mb-7">

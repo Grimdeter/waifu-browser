@@ -28,6 +28,16 @@ export const routes = [
         path: "AddWaifu",
         component: () => import("./pages/AddWaifu.vue"),
       },
+      {
+        name: "UpdateWaifu",
+        path: "UpdateWaifu",
+        component: () => import("./pages/UpdateWaifu.vue"),
+      },
+      {
+        name: "DeleteWaifu",
+        path: "DeleteWaifu",
+        component: () => import("./pages/DeleteWaifu.vue"),
+      },
     ],
   },
 ];

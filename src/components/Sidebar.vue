@@ -1,8 +1,11 @@
 <script setup>
-import { defineProps, computed, defineEmits } from "vue";
-import CloseIcon from "@/components/icons/CloseIcon.vue";
+import { defineProps, computed, defineEmits, defineComponent } from "vue"
+import CloseIcon from "@/components/icons/CloseIcon.vue"
+import ManageWaifusVue from "@/pages/ManageWaifus.vue"
 
-const emits = defineEmits(["update:modelValue", "update:tag"]);
+defineComponent(ManageWaifusVue)
+
+const emits = defineEmits(["update:modelValue", "update:tag"])
 
 const props = defineProps({
   modelValue: {
@@ -19,24 +22,24 @@ const props = defineProps({
     type: Object,
     default: () => ({}),
   },
-});
+})
 
 const innerModel = computed({
   get: () => props.modelValue,
   set(value) {
-    emits("update:modelValue", value);
+    emits("update:modelValue", value)
   },
-});
+})
 
 const innerTag = computed({
   get: () => props.tag,
   set(value) {
-    emits("update:tag", value);
+    emits("update:tag", value)
   },
-});
+})
 const closeSidebar = () => {
-  emits("update:modelValue", false);
-};
+  emits("update:modelValue", false)
+}
 </script>
 
 <template>
@@ -83,6 +86,12 @@ const closeSidebar = () => {
             target="_blank"
             >Project GitHub</a
           >
+        </div>
+        <div class="flex items-center justify-center mt-12">
+          <h3 class="text-white md:hidden">Manage Waifus</h3>
+        </div>
+        <div class="flex items-center justify-center bg-gray-700 mt-10">
+          <manage-waifus-vue></manage-waifus-vue>
         </div>
       </div>
     </nav>

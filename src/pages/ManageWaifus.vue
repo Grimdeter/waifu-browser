@@ -1,16 +1,35 @@
 <template>
-  <div class="container mx-auto">
-    <router-link
-      to="AddWaifu"
-      class="block mx-auto text-gray-700 capitalize hover:text-blue-600"
-      >Add waifu</router-link
-    >
-    <router-link
-      to="/"
-      class="block mx-auto mt-2 md:mt-0 text-sm text-gray-700 capitalize hover:text-blue-600"
-      >Browse waifus</router-link
-    >
-    <button class="block mx-auto">Update waifu</button>
-    <button class="block mx-auto">Delete waifu</button>
-  </div>
+  <ul
+    class="py-1 text-sm text-gray-700 dark:text-gray-200 mx-auto text-center"
+    aria-labelledby="dropdownDefault"
+  >
+    <li>
+      <router-link
+        to="AddWaifu"
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+        >Add waifu</router-link
+      >
+    </li>
+    <li>
+      <router-link
+        to="/"
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+        >Browse waifus</router-link
+      >
+    </li>
+    <li>
+      <router-link
+        to="UpdateWaifu"
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+        >Update waifus</router-link
+      >
+    </li>
+    <li>
+      <router-link
+        to="DeleteWaifu"
+        class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+        >Delete waifus</router-link
+      >
+    </li>
+  </ul>
 </template>

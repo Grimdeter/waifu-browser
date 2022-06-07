@@ -1,8 +1,11 @@
 import { createToast } from "mosha-vue-toastify";
 import Axios from "axios";
+import { useWaifusStore } from "@/stores/waifus.js";
 
 const BASE_URI =
   "https://vue-sample-8b60b-default-rtdb.europe-west1.firebasedatabase.app/waifus";
+
+const waifusStoreArray = useWaifusStore();
 
 const firebaseAxios = Axios.create({
   baseURL: BASE_URI,
@@ -26,6 +29,7 @@ export const getMyWaifus = async () => {
       index++;
     }
     currWaifus = arr;
+    waifusStoreArray.setNewFirebaseWaifus(arr);
     return arr;
   } catch (error) {
     createToast(error.message, { type: "danger" });

@@ -48,6 +48,7 @@ import UpdateWaifuVue from "@/pages/UpdateWaifu.vue"
 import DeleteWaifuVue from "@/pages/DeleteWaifu.vue"
 import { DeleteWaifu } from "@/services/firbase.service"
 import { UpdateWaifu } from "@/services/firbase.service"
+import DetailWaifuVue from "@/pages/DetailWaifu.vue"
 
 export default {
   components: {
@@ -58,6 +59,7 @@ export default {
     BackgroundImage,
     UpdateWaifuVue,
     DeleteWaifuVue,
+    DetailWaifuVue,
   },
 
   setup() {

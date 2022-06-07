@@ -73,18 +73,20 @@ const toggleOnMousleLeave = () => {
         :image="image"
         v-model="menuIsVisible"
       ></ImgMenu>
-      <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
-        <h3>
-          <p
-            class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary"
-          >
-            {{ image.image_id || image.WID }}
+      <router-link :to="'/waifu/' + (image.image_id || image.WID)">
+        <div class="p-8 sm:p-9 md:p-7 xl:p-9 text-center">
+          <h3>
+            <p
+              class="font-semibold text-dark text-xl sm:text-[22px] md:text-xl lg:text-[22px] xl:text-xl 2xl:text-[22px] mb-4 block hover:text-primary"
+            >
+              {{ image.image_id || image.WID }}
+            </p>
+          </h3>
+          <p class="text-base text-body-color leading-relaxed mb-7">
+            {{ getDescription }}
           </p>
-        </h3>
-        <p class="text-base text-body-color leading-relaxed mb-7">
-          {{ getDescription }}
-        </p>
-      </div>
+        </div>
+      </router-link>
     </div>
     <vue-easy-lightbox
       moveDisabled

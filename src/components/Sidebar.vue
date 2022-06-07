@@ -91,7 +91,7 @@ const closeSidebar = () => {
           <h3 class="text-white md:hidden">Manage Waifus</h3>
         </div>
         <div class="flex items-center justify-center bg-gray-700 mt-10">
-          <manage-waifus-vue></manage-waifus-vue>
+          <manage-waifus-vue class="text-white md:hidden"></manage-waifus-vue>
         </div>
       </div>
     </nav>

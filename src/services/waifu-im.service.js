@@ -1,8 +1,10 @@
 import { createToast } from "mosha-vue-toastify";
 import { waifuImAxios } from "./axios.service";
+import { useWaifusStore } from "@/stores/waifus.js";
 
 const TAGS = "tags/?full=on";
 const LIST = "random";
+const waifusStoreArray = useWaifusStore();
 
 export const getAllTags = async () => {
   try {
@@ -26,6 +28,7 @@ export const getRandomWaifus = async (tag, isNsfw = false) => {
         selected_tags: tag,
       },
     });
+    waifusStoreArray.pushNewWaifusArray(response.images);
 
     return response.images;
   } catch (err) {

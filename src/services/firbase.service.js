@@ -11,6 +11,7 @@ const firebaseAxios = Axios.create({
   baseURL: BASE_URI,
   headers: {
     "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
   },
 });
 
@@ -20,6 +21,7 @@ let currWaifus = [];
 export const getMyWaifus = async () => {
   console.log("getMyWaifus");
   try {
+    console.log("err here1");
     const response = await firebaseAxios.get(".json");
     let arr = [];
     let index = 0;
@@ -32,6 +34,7 @@ export const getMyWaifus = async () => {
     waifusStoreArray.setNewFirebaseWaifus(arr);
     return arr;
   } catch (error) {
+    console.log("err here2");
     createToast(error.message, { type: "danger" });
   }
 };

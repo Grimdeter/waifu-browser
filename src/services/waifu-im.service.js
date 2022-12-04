@@ -2,8 +2,8 @@ import { createToast } from "mosha-vue-toastify";
 import { waifuImAxios } from "./axios.service";
 import { useWaifusStore } from "@/stores/waifus.js";
 
-const TAGS = "tags/?full=on";
-const LIST = "random";
+const TAGS = "tags/?full=true";
+const LIST = "search";
 const waifusStoreArray = useWaifusStore();
 
 export const getAllTags = async () => {
@@ -25,7 +25,7 @@ export const getRandomWaifus = async (tag, isNsfw = false) => {
         gif: false,
         is_nsfw: isNsfw,
         many: true,
-        selected_tags: tag,
+        included_tags: tag,
       },
     });
     waifusStoreArray.pushNewWaifusArray(response.images);

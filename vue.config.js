@@ -11,6 +11,5 @@ module.exports = defineConfig({
 });
 
 module.exports = {
-  publicPath: "/waifu-browser/",
-  outputDir: "docs",
+  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
 };

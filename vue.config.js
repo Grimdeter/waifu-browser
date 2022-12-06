@@ -6,10 +6,12 @@ module.exports = defineConfig({
         fs: false,
       },
     },
+    publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
   },
   transpileDependencies: true,
+  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
 });
 
 module.exports = {
-  publicPath: "/waifu-browser/",
+  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
 };

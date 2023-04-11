@@ -3,7 +3,7 @@
  */
 export const routes = [
   {
-    path: "waifu-browser",
+    path: "",
     component: () => import("./layouts/Default.vue"),
     children: [
       {

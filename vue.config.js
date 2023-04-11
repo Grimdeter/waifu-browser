@@ -9,9 +9,9 @@ module.exports = defineConfig({
     publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "./",
   },
   transpileDependencies: true,
-  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "./",
 });
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "/",
+  publicPath: process.env.NODE_ENV === "production" ? "/waifu-browser/" : "./",
 };
